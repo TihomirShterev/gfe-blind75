@@ -74,8 +74,8 @@ const maxProductSubArray = (numbers) => {
 
   for (let i = 0; i < n; i++) {
     // if 0 encountered, reset the product
-    preProduct = (preProduct === 0 ? 1 : preProduct) * numbers[i]; // left-to-right
-    suffProduct = (suffProduct === 0 ? 1 : suffProduct) * numbers[n - 1 - i]; // vice versa
+    preProduct = (preProduct || 1) * numbers[i]; // left-to-right
+    suffProduct = (suffProduct || 1) * numbers[n - 1 - i]; // vice versa
     result = Math.max(result, preProduct, suffProduct);
   }
 
@@ -87,5 +87,6 @@ const maxProductSubArray = (numbers) => {
 // // -10 <= numbers[i] && numbers[i] <= 10
 // happy path
 console.log(maxProductSubArray([1, 2, -3, 5, 1])); // 5
+console.log(maxProductSubArray([1, 2, -3, 0, 1])); // 2
 // edge case
 console.log(maxProductSubArray([2])); // 2
