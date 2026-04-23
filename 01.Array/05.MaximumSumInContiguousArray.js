@@ -1,4 +1,4 @@
-// tags: [Array] [Kadane's Algorithm] [Dynamic Programming] [Greedy]
+// tags: [Array] [Kadane's Algorithm] [Greedy]
 
 // brute-force, time -> O(n^2), space -> O(1)
 // const maxSumSubArray = (numbers) => {
