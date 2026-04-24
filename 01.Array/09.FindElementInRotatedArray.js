@@ -2,9 +2,9 @@
 
 // KEY LOGIC:
 // in a rotated array one of the sides is always sorted - check which
-// // by comparing the values of the low, middle, and high elements
+// // by comparing the values of the left-most, middle, and right-most elements
 // // check which side the target is located at
-// // // by comparing it with the sorted side boundary elements
+// // // by comparing it with the sorted side boundary element
 // // and exclude the other side from the search (decreasing time complexity)
 // iterate until:
 // // either target matches middle element, i.e. target is found
@@ -20,32 +20,32 @@ const findInRotatedArray = (numbers, target) => {
   }
 
   // init array boundary indices
-  let low = 0;
-  let high = n - 1;
+  let leftMost = 0;
+  let rightMost = n - 1;
 
   // loop
-  while (low <= high) {
+  while (leftMost <= rightMost) {
     // find middle index of array
-    const mid = Math.floor((low + high) / 2);
+    const middle = Math.floor((leftMost + rightMost) / 2);
 
     // check if target matches middle element
-    if (target === numbers[mid]) {
-      return mid;
+    if (target === numbers[middle]) {
+      return middle;
     }
 
-    if (numbers[low] <= numbers[mid]) {
-      // if target is located on the left, move the high boundary just before the middle
-      if (numbers[low] <= target && target <= numbers[mid]) {
-        high = mid - 1;
+    if (numbers[leftMost] <= numbers[middle]) {
+      // if target is located on the left, move the right boundary just before the middle
+      if (numbers[leftMost] <= target && target <= numbers[middle]) {
+        rightMost = middle - 1;
       } else {
-        // else move the low boundary just after the middle
-        low = mid + 1;
+        // else move the left boundary just after the middle
+        leftMost = middle + 1;
       }
     } else {
-      if (numbers[mid] <= target && target <= numbers[high]) {
-        low = mid + 1;
+      if (numbers[middle] <= target && target <= numbers[rightMost]) {
+        leftMost = middle + 1;
       } else {
-        high = mid - 1;
+        rightMost = middle - 1;
       }
     }
   }
