@@ -2,9 +2,8 @@
 
 // KEY LOGIC:
 // in a rotated array one of the sides is always sorted - check which
-// // by comparing the values of the left-most, middle, and right-most elements
-// // check which side the target is located at
-// // // by comparing it with the sorted side boundary element
+// // if the left-most element is less than or equals to the middle one, the left side is sorted
+// // check if target is on the sorted side
 // // and exclude the other side from the search (decreasing time complexity)
 // iterate until:
 // // either target matches middle element, i.e. target is found
