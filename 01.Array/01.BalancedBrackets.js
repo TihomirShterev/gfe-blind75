@@ -18,44 +18,87 @@
 //   return str.length === 0;
 // };
 
-// optimal, time -> O(n), space -> O(n)
+// optimal v.1 (GFE, using hashmap), time -> O(n), space -> O(n)
+// const isBalancedBrackets = (str) => {
+//   // early return
+//   if (str.length % 2 === 1) {
+//     return false;
+//   }
+
+//   // define bracket map
+//   const bracketMap = {
+//     '}': '{',
+//     ']': '[',
+//     ')': '(',
+//   };
+
+//   // lifo + going deeper -> stack
+//   const bracketStack = [];
+
+//   // iterate just once
+//   for (const char of str) {
+//     const charOpeningBracket = bracketMap[char];
+
+//     // if char is closing bracket, take the last opening bracket in of the stack
+//     if (charOpeningBracket) {
+//       const lastOpeningBracket = bracketStack.pop();
+
+//       // if it mismatches the corresponding opening bracket of the char
+//       // in the bracket map, return false
+//       if (lastOpeningBracket !== charOpeningBracket) {
+//         return false;
+//       }
+//     } else {
+//       // else push in stack
+//       bracketStack.push(char);
+//     }
+//   }
+
+//   // if stack is empty, brackets balanced -> return true
+//   // else return false
+//   return bracketStack.length === 0;
+// };
+
+// optimal v.2 (mine, using switch-statement), time -> O(n), space -> O(n)
 const isBalancedBrackets = (str) => {
   // early return
   if (str.length % 2 === 1) {
     return false;
   }
 
-  // define bracket map
-  const bracketMap = {
-    '}': '{',
-    ']': '[',
-    ')': '(',
-  };
-
-  // lifo + going deeper -> stack
   const bracketStack = [];
 
-  // iterate just once
-  for (const char of str) {
-    const charOpeningBracket = bracketMap[char];
+  for (const curr of str) {
+    const lastOpening = bracketStack[bracketStack.length - 1];
 
-    // if char is closing bracket, take the last opening bracket in of the stack
-    if (charOpeningBracket) {
-      const lastOpeningBracket = bracketStack.pop();
-
-      // if it mismatches the corresponding opening bracket of the char
-      // in the bracket map, return false
-      if (lastOpeningBracket !== charOpeningBracket) {
-        return false;
-      }
+    if (curr === '[' || curr === '(' || curr === '{') {
+      bracketStack.push(curr);
     } else {
-      // else push in stack
-      bracketStack.push(char);
+      switch (curr) {
+        case ']':
+          if (lastOpening !== '[') {
+            return false;
+          }
+
+          break;
+        case ')':
+          if (lastOpening !== '(') {
+            return false;
+          }
+
+          break;
+        case '}':
+          if (lastOpening !== '{') {
+            return false;
+          }
+
+          break;
+      }
+
+      bracketStack.pop();
     }
   }
 
-  // if stack is empty, brackets balanced -> return true
-  // else return false
   return bracketStack.length === 0;
 };
 
