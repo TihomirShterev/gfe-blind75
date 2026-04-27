@@ -26,7 +26,7 @@
 //   return result;
 // };
 
-// optimal (using DP), time -> O(n), space -> O(1)
+// optimal v.1 (using DP), time -> O(n), space -> O(1)
 // const maxProductSubArray = (numbers) => {
 //   const n = numbers.length;
 
@@ -57,7 +57,7 @@
 //   return result;
 // };
 
-// optimal (using prefix/suffix), time -> O(n), space -> O(1)
+// optimal v.2 (using prefix/suffix), time -> O(n), space -> O(1)
 const maxProductSubArray = (numbers) => {
   const n = numbers.length;
 
