@@ -56,7 +56,7 @@ myBstInstance.insert(8);
 myBstInstance.insert(12);
 // console.log('myBstInstance: ', myBstInstance);
 
-// solution: depth-first search in-order, time -> O(n), space -> O(1)
+// solution: depth-first search in-order, time -> O(n), space -> O(n)
 const dfsInOrder = (node, data) => {
   if (node) {
     // recursively keep searching, initially adding the left-most node
@@ -76,5 +76,4 @@ const kthSmallestElementInABst = (root, k) => {
 // Constraints
 // 1 <= k <= Number of nodes <= 1000
 // 1 <= TreeNode.val <= 1,000,000
-// happy path
-console.log(kthSmallestElementInABst(myBstInstance.root, 2));
+console.log(kthSmallestElementInABst(myBstInstance.root, 2)); // 3
