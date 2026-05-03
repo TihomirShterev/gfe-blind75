@@ -88,9 +88,10 @@ const BSTLowestCommonAncestor = (root, a, b) => {
 };
 
 // Constraints
-// 1 <= k <= Number of nodes <= 1000
+// 1 <= Number of nodes <= 1000
 // 1 <= TreeNode.val <= 1,000,000
-// A node can be considered a descendant of itself
+// `a` and `b` are guaranteed to exist in the BST
+// All TreeNode.val are unique within the tree
 console.log(
   BSTLowestCommonAncestor(
     myBstInstance.root,
