@@ -1,4 +1,4 @@
-// tags: [Binary Search Tree] [Depth-First Search] [Recursion]
+// tags: [Binary Tree] [Depth-First Search] [Recursion]
 
 // KEY LOGIC:
 // // take the first element from the preorder array; this is the root.

@@ -1,4 +1,4 @@
-// tags: [Binary Search Tree] [Depth-First Search] [Recursion]
+// tags: [Binary Tree] [Depth-First Search] [Recursion]
 
 // boilerplate: for testing purposes, not needed for the in-browser IDE
 class TreeNode {
@@ -50,38 +50,29 @@ const myBstInstance = new MyBst();
 myBstInstance.insert(10);
 myBstInstance.insert(5);
 myBstInstance.insert(15);
-myBstInstance.insert(2);
+myBstInstance.insert(1);
 myBstInstance.insert(8);
 myBstInstance.insert(12);
 myBstInstance.insert(20);
-myBstInstance.insert(3);
-myBstInstance.insert(1);
 
-// solution: depth-first search post-order, time -> O(n), space -> O(h)
-const binaryTreeMaximumPathSum = (root) => {
-  let result = -Infinity;
+// solution: depth-first search pre-order time -> O(n), space -> O(h)
+const binaryTreeFlip = (root) => {
+  // base case: if node is null, return null
+  if (root === null) {
+    return null;
+  }
 
-  const subtreeMaxSum = (node) => {
-    // base case
-    if (node === null) {
-      return 0;
-    }
-
-    // dfs post-order, ignore negatives
-    const leftSum = Math.max(subtreeMaxSum(node.left), 0);
-    const rightSum = Math.max(subtreeMaxSum(node.right), 0);
-    // save max
-    result = Math.max(result, node.val + leftSum + rightSum);
-    // return the greater path
-    return node.val + Math.max(leftSum, rightSum);
-  };
-
-  subtreeMaxSum(root);
-  return result;
+  // swap the left and right of current node
+  const temp = root.left;
+  root.left = root.right;
+  root.right = temp;
+  // recursively keep swapping
+  binaryTreeFlip(root.left);
+  binaryTreeFlip(root.right);
+  return root;
 };
 
 // Constraints
-// 1 <= Number of nodes <= 10,000
+// 1 <= Number of nodes <= 100
 // -100 <= TreeNode.val <= 100
-console.log(binaryTreeMaximumPathSum(myBstInstance.root)); // 58
-// 8 + 5 + 10 + 15 + 20 = 58
+console.log(binaryTreeFlip(myBstInstance.root)); // output: inverted BST

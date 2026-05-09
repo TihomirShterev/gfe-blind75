@@ -1,4 +1,4 @@
-// tags: [Binary Search Tree] [Depth-First Search] [Recursion]
+// tags: [Binary Tree] [Depth-First Search] [Recursion]
 
 // boilerplate: for testing purposes, not needed for the in-browser IDE
 class TreeNode {

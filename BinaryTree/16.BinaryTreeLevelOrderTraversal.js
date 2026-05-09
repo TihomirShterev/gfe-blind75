@@ -1,4 +1,4 @@
-// tags: [Binary Search Tree] [Depth-First Search] [Recursion]
+// tags: [Binary Tree] [Depth-First Search] [Recursion]
 
 // boilerplate: for testing purposes, not needed for the in-browser IDE
 class TreeNode {
@@ -50,28 +50,38 @@ const myBstInstance = new MyBst();
 myBstInstance.insert(10);
 myBstInstance.insert(5);
 myBstInstance.insert(15);
-myBstInstance.insert(2);
+myBstInstance.insert(null);
 myBstInstance.insert(8);
 myBstInstance.insert(12);
 myBstInstance.insert(20);
-myBstInstance.insert(3);
-myBstInstance.insert(1);
 
-// solution: depth-first search post-order, time -> O(n), space -> O(h)
-const binaryTreeMaximumDepth = (root) => {
-  // base case
-  if (root === null) {
-    return 0;
-  }
+// solution: depth-first search pre-order, time -> O(n), space -> O(h)
+const binaryTreeLevelOrderTraversal = (root) => {
+  const result = [];
 
-  // dfs post-order
-  const leftHeight = binaryTreeMaximumDepth(root.left);
-  const rightHeight = binaryTreeMaximumDepth(root.right);
-  // increment the current max height
-  return Math.max(leftHeight, rightHeight) + 1;
+  const traverseTree = (node, level) => {
+    // base case
+    if (node === null) {
+      return;
+    }
+
+    // init level
+    if (result.length === level) {
+      result.push([]);
+    }
+
+    // add node value to corresponding level
+    result[level].push(node.val);
+    // recursively keep traversing and incrementing the level
+    traverseTree(node.left, level + 1);
+    traverseTree(node.right, level + 1);
+  };
+
+  traverseTree(root, 0);
+  return result;
 };
 
 // Constraints
 // 1 <= Number of nodes <= 10,000
 // -100 <= TreeNode.val <= 100
-console.log(binaryTreeMaximumDepth(myBstInstance.root)); // 4
+console.log(binaryTreeLevelOrderTraversal(myBstInstance.root)); // [Array(1), Array(2), Array(4)]

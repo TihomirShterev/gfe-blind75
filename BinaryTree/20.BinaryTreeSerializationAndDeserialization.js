@@ -1,4 +1,4 @@
-// tags: [Binary Search Tree] [Depth-First Search] [Recursion]
+// tags: [Binary Tree] [Depth-First Search] [Recursion]
 
 // solution part 1: define `TreeNode`
 class TreeNode {
