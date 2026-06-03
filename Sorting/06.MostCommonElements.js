@@ -78,8 +78,8 @@ const mostCommonElements = (numbers, k) => {
   // the top k elements are the last k elements in the flattened buckets
   return buckets
     .filter((b) => b.length > 0)
-    .slice(-k)
-    .flat();
+    .flat()
+    .slice(-k);
 };
 
 // Constraints
