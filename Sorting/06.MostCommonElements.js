@@ -1,15 +1,15 @@
 // tags: [Array] [Hashmap] [Sorting] [Bucket Sort]
 
-// brute-force, time -> O(n lon n), space -> O(n)
+// brute-force, time -> O(n lon n), space -> O(1)
 // const mostCommonElements = (numbers, k) => {
 //   const n = numbers.length;
 
 //   // early return
-//   if (n === 1 || n === k) {
+//   if (n === 1) {
+//     return [numbers[0]];
+//   } else if (n === k) {
 //     return numbers;
 //   }
-
-//   const result = [];
 
 //   // count each number occurences
 //   // init hashmap
@@ -33,9 +33,7 @@
 //   Object.entries(countMap)
 //     .sort((a, b) => b[1] - a[1])
 //     .slice(0, k)
-//     .forEach(([key, _]) => {
-//       result.push(Number(key));
-//     });
+//     .map(([key]) => Number(key));
 
 //   return result;
 // };
@@ -45,7 +43,9 @@ const mostCommonElements = (numbers, k) => {
   const n = numbers.length;
 
   // early return
-  if (n === 1 || n === k) {
+  if (n === 1) {
+    return [numbers[0]];
+  } else if (n === k) {
     return numbers;
   }
 
@@ -78,8 +78,8 @@ const mostCommonElements = (numbers, k) => {
   // the top k elements are the last k elements in the flattened buckets
   return buckets
     .filter((b) => b.length > 0)
-    .flat()
-    .slice(-k);
+    .slice(-k)
+    .flat();
 };
 
 // Constraints
@@ -94,3 +94,4 @@ console.log(mostCommonElements([7, 7, 7, 8, 8, 9, 9, 9], 3)); // [7, 9, 8] or [8
 // edge cases
 console.log(mostCommonElements([10, 10, 10, 10, 10], 1)); // [10]
 console.log(mostCommonElements([10], 1)); // [10]
+console.log(mostCommonElements([2, 1, 3, 4], 4)); // [2, 1, 3, 4]
