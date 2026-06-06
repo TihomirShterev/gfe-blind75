@@ -5,9 +5,7 @@
 //   const n = numbers.length;
 
 //   // early return
-//   if (n === 1) {
-//     return [numbers[0]];
-//   } else if (n === k) {
+//   if (n === 1 || n === k) {
 //     return numbers;
 //   }
 
@@ -43,9 +41,7 @@ const mostCommonElements = (numbers, k) => {
   const n = numbers.length;
 
   // early return
-  if (n === 1) {
-    return [numbers[0]];
-  } else if (n === k) {
+  if (n === 1 || n === k) {
     return numbers;
   }
 

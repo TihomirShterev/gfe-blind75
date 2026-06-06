@@ -66,10 +66,16 @@
 // optimal (using prefix/suffix), time -> O(n), space -> O(1)
 const arrayProductExcludingCurrent = (numbers) => {
   const n = numbers.length;
+
+  // early return
+  if (n === 2) {
+    return [numbers[1], numbers[0]];
+  }
+
   let zeroCount = 0;
   const result = Array.from({ length: n }, () => 1);
   let preProduct = 1;
-  let suffProduct = 1;
+  let sufProduct = 1;
 
   // loop
   for (let i = 0; i < n; i++) {
@@ -87,8 +93,8 @@ const arrayProductExcludingCurrent = (numbers) => {
     result[i] *= preProduct;
     preProduct *= numbers[i];
     // accumulate right-left
-    result[n - 1 - i] *= suffProduct;
-    suffProduct *= numbers[n - 1 - i];
+    result[n - 1 - i] *= sufProduct;
+    sufProduct *= numbers[n - 1 - i];
   }
 
   return result;
