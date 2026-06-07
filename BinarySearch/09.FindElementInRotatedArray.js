@@ -15,7 +15,7 @@ const findInRotatedArray = (numbers, target) => {
 
   // early return
   if (n === 1) {
-    numbers[0] === target ? 0 : -1;
+    return numbers[0] === target ? 0 : -1;
   }
 
   // init array boundary indices
