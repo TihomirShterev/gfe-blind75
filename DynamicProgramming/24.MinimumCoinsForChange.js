@@ -5,6 +5,12 @@ const minimumCoinsForChange = (coins, target) => {
   // early return
   if (target === 0) {
     return 0;
+  } else if (n === 1) {
+    if (coins[0] === target) {
+      return coins[0];
+    } else {
+      return -1;
+    }
   }
 
   // init dp array with value greater than `target` (e.g. Infinity) for each index
@@ -12,14 +18,14 @@ const minimumCoinsForChange = (coins, target) => {
   // base case: no coins for reaching `0`
   dp[0] = 0;
 
-  // loop through all possible amounts from 1 to target
-  for (let i = 1; i <= target; i++) {
+  // loop through all possible sums from 1 to target
+  for (let currSum = 1; currSum <= target; currSum++) {
     // loop coins
     for (const coin of coins) {
-      // if curr coin can contribute to curr amount `i`,
-      if (i - coin >= 0) {
-        // update dp[i] with min of its curr value or `dp[i - coin] + 1`
-        dp[i] = Math.min(dp[i], dp[i - coin] + 1); // `+ 1` increments the min coin count
+      // if curr coin can contribute to curr sum,
+      if (currSum - coin >= 0) {
+        // update dp[currSum] with min of its curr value or `dp[currSum - coin] + 1`
+        dp[currSum] = Math.min(dp[currSum], dp[currSum - coin] + 1); // `+ 1` increments the min coin count
       }
     }
   }
